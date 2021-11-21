@@ -8,42 +8,52 @@ function App() {
     {
       code: "USA",
       adjacency:["CAN", "MEX"],
+      name:"United States of America"
     },
     {
       code: "CAN",
       adjacency:["USA"],
+      name: "Canada"
     },
     {
       code: "MEX",
       adjacency:["USA", "BLZ", "GTM"],
+      name: 'Mexico'
     },
     {
       code: "GTM",
       adjacency:["MEX", "SLV", "HND", "BLZ"],
+      name: "Guatemala"
     },
     {
       code: "BLZ",
       adjacency:["MEX", "GTM"],
+      name: "Belize"
     },
     {
       code: "SLV",
       adjacency:["GTM", "HND"],
+      name: "El Salvador",
     },
     {
       code: "HND",
       adjacency:["SLV", "GTM", "NIC"],
+      name: "Honduras"
     },
     {
       code: "NIC",
       adjacency:["HND", "CRI"],
+      name:'Nicaragua'
     },
     {
       code: "CRI",
       adjacency:["PAN", "NIC"],
+      name:'Costa Rica'
     },
     {
       code: "PAN",
       adjacency:["CRI"],
+      name: 'Panama'
     },
   ])
   const [traveledCountries, setTraveledCountries ] = React.useState(['USA'])
@@ -60,7 +70,7 @@ function App() {
    shortestPath(event.target.value);
   };
 
-  const shortestPath = function(endCountry){
+  const shortestPath = endCountry => {
     if(!endCountry){return}
     let traveled = ["USA"];
     let visited = {"USA":true}
@@ -96,6 +106,15 @@ function App() {
     alert(`there is no way to get from USA to ${endCountry}, sorry!`)
     return 
   };
+
+  const returnName = code =>{
+      for(const countryObj of countries){
+        if(countryObj.code === code){
+          return countryObj.name
+        }
+      }
+      return "Unknown";
+  }
   
   return (
     <div className="App">
@@ -106,7 +125,7 @@ function App() {
         <select name="selectedCountry" onChange={handleOnChange}>
           {countries.map((item, index)=>
             <option value={item.code} key={index}>
-              {item.code}
+              {item.name}  ({item.code})
             </option>
           )}
         </select>
@@ -114,7 +133,7 @@ function App() {
         <p>You have travelled through the following countries:</p>
         <ul>
          {traveledCountries.map((item,index)=>
-        <li key={index}>{item}</li>
+        <li key={index}>{returnName(item)} ({item})</li>
          )}
         </ul>
       </header>
