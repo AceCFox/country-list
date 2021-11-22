@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import map from './northAmericaOutline.gif'
 
 function App() {
   const [selectedCountry, setSelectedCountry] = React.useState("USA");
@@ -119,6 +120,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="column">
         <p>
           Select a country to travel to from the USA
         </p>
@@ -136,7 +138,12 @@ function App() {
         <li key={index}>{returnName(item)} ({item})</li>
          )}
         </ul>
+        </div>
+        <div>
+        <img src={map} alt="map of north american countries"></img>
+        </div>
       </header>
+      
     </div>
   );
 }
