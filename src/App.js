@@ -103,7 +103,7 @@ function App() {
         tail++;
       }
     }
-    //setTraveledCountries(traveled);
+    // if we get here there was no route to the endpoint
     alert(`there is no way to get from USA to ${endCountry}, sorry!`)
     return 
   };
@@ -131,7 +131,6 @@ function App() {
             </option>
           )}
         </select>
-        {/* <p>You are now in this country: {selectedCountry}</p> */}
         <p>You have travelled through the following countries:</p>
         <ul>
          {traveledCountries.map((item,index)=>
